@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,15 +53,44 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				"pahacraft": {
+					"50": "#fbf5f2",
+					"100": "#f6e9e2",
+					"200": "#eed2c5",
+					"300": "#e4b4a1",
+					"400": "#d88c72",
+					"500": "#c65f46",
+					"600": "#b9523f",
+					"700": "#9a4035",
+					"800": "#7c3730",
+					"900": "#64302a",
+					"950": "#351714"
+				},
+				"pahacraft-accent": {
+					"50": "#f3f8f6",
+					"100": "#e0ece6",
+					"200": "#c2d8cd",
+					"300": "#9abca9",
+					"400": "#699a83",
+					"500": "#4d7e68",
+					"600": "#2c5545",
+					"700": "#254a3c",
+					"800": "#1f3d32",
+					"900": "#1a332a",
+					"950": "#0c1c17"
+				},
+				"pahacraft-beige": {
+					"50": "#fdfbf8",
+					"100": "#f6f0e8",
+					"200": "#eadecb",
+					"300": "#dac5a8",
+					"400": "#c6a480",
+					"500": "#b58c63",
+					"600": "#9b7653",
+					"700": "#805c44",
+					"800": "#6a4c3a",
+					"900": "#583f32",
+					"950": "#302019"
 				}
 			},
 			borderRadius: {
