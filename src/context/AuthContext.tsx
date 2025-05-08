@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useReducer, ReactNode, useEffect } from "react";
 import { User } from "@/types";
 import { mockUsers } from "@/lib/mockData";
@@ -54,6 +53,7 @@ type AuthContextType = {
   login: (email: string, password: string) => Promise<void>;
   register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
+  loginWithGoogle: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -143,6 +143,34 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   };
 
+  // Google login function (mock implementation)
+  const loginWithGoogle = async () => {
+    try {
+      dispatch({ type: "SET_LOADING", isLoading: true });
+      
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      // For demo purposes, create a mock Google user
+      const googleUser: User = {
+        id: `user-google-${Date.now()}`,
+        name: "Google User",
+        email: "user@gmail.com",
+        role: "customer",
+        createdAt: new Date()
+      };
+      
+      // Save user to local storage
+      localStorage.setItem("pahacraft_user", JSON.stringify(googleUser));
+      dispatch({ type: "LOGIN_SUCCESS", user: googleUser });
+      toast.success("Google login successful!");
+    } catch (error) {
+      dispatch({ type: "SET_LOADING", isLoading: false });
+      toast.error(`Google login failed: ${(error as Error).message}`);
+      throw error;
+    }
+  };
+
   // Logout function
   const logout = () => {
     localStorage.removeItem("pahacraft_user");
@@ -158,7 +186,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         isLoading: state.isLoading,
         login,
         register,
-        logout
+        logout,
+        loginWithGoogle
       }}
     >
       {children}
