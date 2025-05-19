@@ -6,7 +6,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { Card } from "@/components/ui/card";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface SellerLayoutProps {
   children: React.ReactNode;
@@ -14,6 +14,8 @@ interface SellerLayoutProps {
 
 const SellerLayout: React.FC<SellerLayoutProps> = ({ children }) => {
   const { isAuthenticated, user } = useAuth();
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   // Check if user is authenticated and is a seller
   if (!isAuthenticated) {
@@ -23,6 +25,9 @@ const SellerLayout: React.FC<SellerLayoutProps> = ({ children }) => {
   if (user?.role !== "seller") {
     return <Navigate to="/" replace />;
   }
+
+  // Helper for determining active link
+  const isActive = (path: string) => currentPath === path;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -36,18 +41,35 @@ const SellerLayout: React.FC<SellerLayoutProps> = ({ children }) => {
               <NavigationMenu orientation="vertical" className="max-w-none w-full">
                 <NavigationMenuList className="flex flex-col space-y-2 w-full">
                   <NavigationMenuItem className="w-full">
-                    <Link to="/seller/dashboard" className={navigationMenuTriggerStyle() + " w-full justify-start"}>
+                    <Link 
+                      to="/seller/dashboard" 
+                      className={`${navigationMenuTriggerStyle()} w-full justify-start ${isActive("/seller/dashboard") ? "bg-muted font-medium" : ""}`}
+                    >
                       Dashboard
                     </Link>
                   </NavigationMenuItem>
                   <NavigationMenuItem className="w-full">
-                    <Link to="/seller/products" className={navigationMenuTriggerStyle() + " w-full justify-start"}>
+                    <Link 
+                      to="/seller/products" 
+                      className={`${navigationMenuTriggerStyle()} w-full justify-start ${isActive("/seller/products") ? "bg-muted font-medium" : ""}`}
+                    >
                       Products
                     </Link>
                   </NavigationMenuItem>
                   <NavigationMenuItem className="w-full">
-                    <Link to="/seller/orders" className={navigationMenuTriggerStyle() + " w-full justify-start"}>
+                    <Link 
+                      to="/seller/orders" 
+                      className={`${navigationMenuTriggerStyle()} w-full justify-start ${isActive("/seller/orders") ? "bg-muted font-medium" : ""}`}
+                    >
                       Orders
+                    </Link>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem className="w-full">
+                    <Link 
+                      to="/seller/account" 
+                      className={`${navigationMenuTriggerStyle()} w-full justify-start ${isActive("/seller/account") ? "bg-muted font-medium" : ""}`}
+                    >
+                      My Account
                     </Link>
                   </NavigationMenuItem>
                 </NavigationMenuList>

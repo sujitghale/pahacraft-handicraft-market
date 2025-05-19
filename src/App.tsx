@@ -24,6 +24,7 @@ import NotFound from "./pages/NotFound";
 import SellerDashboard from "./pages/seller/SellerDashboard";
 import SellerProducts from "./pages/seller/SellerProducts";
 import SellerOrders from "./pages/seller/SellerOrders";
+import SellerAccount from "./pages/seller/SellerAccount";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => (
               <Route path="/seller/dashboard" element={<SellerDashboard />} />
               <Route path="/seller/products" element={<SellerProducts />} />
               <Route path="/seller/orders" element={<SellerOrders />} />
+              <Route path="/seller/account" element={<SellerAccount />} />
               
               <Route path="*" element={<NotFound />} />
             </Routes>
